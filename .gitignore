@@ -1,0 +1,4 @@
+*.mvn
+*.mvno
+*.o
+*.out

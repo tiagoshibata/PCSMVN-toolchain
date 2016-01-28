@@ -1,0 +1,35 @@
+#!/bin/bash
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PATH="$DIR:$PATH"
+if [ $1 == "-c" ] ; then
+	if [ $? -gt 2 ] ; then
+		echo "Use -c with one file"
+		exit 1
+	fi
+	cat "$2" | pcsmvn-pp | pcsmvn-as > "${2/%\.asm/}.mvno"
+else
+	if [ -f temp.mvno ] ; then
+		rm temp.mvno
+	fi
+	use_temp_file=false
+	for file in $* ; do
+		if [[ $file == *".mvno" ]] ; then
+			link="$link $file"
+		else
+			cat $file | pcsmvn-pp | pcsmvn-as >> temp.mvno
+			use_temp_file=true
+		fi
+	done
+	if [[ $1 == *".mvno" ]] ; then
+		outfile="${1/%\.mvno/}.mvn"
+	else
+		outfile="${1/%\.asm/}.mvn"
+	fi
+	if [ "$use_temp_file" = true ] ; then
+		link="$link temp.mvno"
+	fi
+	pcsmvn-ld $link > "$outfile"
+	if [ -f temp.mvno ] ; then
+		rm temp.mvno
+	fi
+fi
