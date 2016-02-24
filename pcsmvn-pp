@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/bin/bash
 sed 's/\(.*\):\(.*\)/\1:\n\2/' | sed -E -e 's/:/ :/' -e 's/\s+/ /g' -e 's/;.*//' \
 	-e 's/^\s//' -e 's/\s$//' -e 's/- /-/g' -e '/^$/d' |
 	sed -e 's/^func \([a-zA-Z0-9_][a-zA-Z0-9_]*\)$/\1 :\ndw 0/' -e 's/^ret$/ret 0/' \

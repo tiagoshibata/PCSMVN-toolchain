@@ -6,7 +6,16 @@ opcodes = ["jmp", "jz", "jn", "mov", "add", "sub", "mul", "div", "loa", "sto",
 
 memory = {}
 symbols = {}
-for line in sys.stdin:
+for input_line in sys.stdin:
+	input_line = input_line.split(';')
+	if len(input_line) > 1:
+		comments = ';'.join(input_line[1:])[:-1]
+	else:
+		comments = ''
+	line = input_line[0]
+	if not line:
+		print("; %s" % (comments))
+		continue
 	operands = line.split()
 	if operands[1] == "=":	# label
 		symbols[operands[0]] = int(operands[2], 16)
@@ -17,7 +26,7 @@ for line in sys.stdin:
 	operand = word & 0xfff
 	asm_line = opcodes[operation] + " "
 	if len(operands) == 2:
-		asm_line += "%.4X" % (operand)
+		asm_line += "%.4X ; %s" % (operand, comments)
 	else:
 		if operand == 0:
 			asm_line += operands[2]
