@@ -2,7 +2,7 @@
 DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PATH="$DIR:$PATH"
 if [ $1 == "-c" ] ; then
-	if [ $? -gt 2 ] ; then
+	if [ $# -gt 2 ] ; then
 		echo "Use -c with one file"
 		exit 1
 	fi

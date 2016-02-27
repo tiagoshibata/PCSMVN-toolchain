@@ -2,10 +2,10 @@
 import sys
 
 opcodes = {"jmp" : 0 << 12, "jz" : 1 << 12, "je" : 1 << 12, "jn" : 2 << 12,
-	"mov" : 3 << 12, "add" : 4 << 12, "sub" : 5 << 12, "mul" : 6 << 12,
-	"div" : 7 << 12, "loa" : 8 << 12, "sto" : 9 << 12, "call" : 0xa << 12,
-	"ret" : 0xb << 12, "hlt" : 0xc << 12, "in" : 0xd << 12, "out" : 0xe << 12,
-	"sup" : 0xf << 12}
+	"jl" : 2 << 12, "mov" : 3 << 12, "add" : 4 << 12, "cmp" : 5 << 12,
+	"sub" : 5 << 12, "mul" : 6 << 12, "div" : 7 << 12, "loa" : 8 << 12,
+	"sto" : 9 << 12, "call" : 0xa << 12, "ret" : 0xb << 12, "hlt" : 0xc << 12,
+	"in" : 0xd << 12, "out" : 0xe << 12, "sup" : 0xf << 12}
 
 symbols = {}
 
