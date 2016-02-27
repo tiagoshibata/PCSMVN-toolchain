@@ -101,6 +101,8 @@ int main(int argc, char **argv) {
 
 		printf("\tstart 0x%.4" PRIx16 "\tsize 0x%.4" PRIx16 "\n", block.start, block.size);
 		for (uint16_t i = 0; i < block.size; i++) {
+			if ((i % 8 == 0) && i)
+				printf("\n");
 			printf("%.4x ", block.data[i]);
 			checksum += block.data[i];
 		}
