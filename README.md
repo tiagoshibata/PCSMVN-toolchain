@@ -148,7 +148,7 @@ mov 123h
 add 0x4
 mul 5
 dw 0xfffa
-ret
+ret teste_funcao
 ```
 
 Aqui escolhemos colocar o arquivo main na posição 0 e teste_funcao na 0x200 da
@@ -207,7 +207,7 @@ symbol_resolution_function.mvno
 0204: add 0004
 0206: mul 0005
 0208: sup 0FFA
-020A: ret 0000
+020A: ret 0200
 ```
 
 ## Bugs
